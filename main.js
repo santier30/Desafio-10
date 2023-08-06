@@ -234,7 +234,7 @@ const emailValidationHandler = (event) => {
 
   if (content === "") {
     message.push("Email address can't be empty.");
-  }else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(content)) {
+  }else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$/.test(content)) {
     message.push("Invalid email address.");
   }
 
@@ -268,7 +268,7 @@ const postalCodeValidationHandler = (event) => {
   if (content === "") {
     message.push("Código Postal can't be empty.");
   }else if (!/^\d{4}$/.test(content)) {
-    message.push("Invalid Código Postal. It should be a 4-digit number.");
+    message.push("Invalid postal code. It should be a 4-digit number.");
   }
 
   postalCodeError.innerHTML = message.join('<br>');
@@ -301,7 +301,7 @@ const phoneNumberValidationHandler = (event) => {
   if (content === "") {
     message.push("Número de teléfono can't be empty.");
   }else if (!/^\+54\s?(11|15)\s?\d{8}$/.test(content)) {
-    message.push("Invalid Número de teléfono. The phone number should be in the format +54 11 or +54 15 followed by 8 digits.");
+    message.push("Invalid phone number. The phone number should be in the format +54 11 or +54 15 followed by 8 digits.");
   }
 
   phoneNumberError.innerHTML = message.join('<br>');
@@ -332,7 +332,7 @@ const dobValidationHandler = (event) => {
   let message = [];
 
   if (content === "") {
-    message.push("Fecha de nacimiento can't be empty.");
+    message.push("Date of birth can't be empty.");
   } else {
     // Parse the date of birth into a Date object
     const dobDate = new Date(content);
@@ -343,7 +343,7 @@ const dobValidationHandler = (event) => {
 
     // Check if the person is older than 18
     if (ageDifference < 18) {
-      message.push("Debes ser mayor de 18 años.");
+      message.push("Must be 18 or older.");
     }
   }
 
@@ -398,6 +398,10 @@ const resetHandler = () => {
     // Reset Postal Code field
     postalCodeInput.value = "";
     postalCodeError.textContent = "";
+
+    // Reset Date of Birth field
+    phoneNumberInput.value = "";
+    phoneNumberError.textContent = "";
   
     // Reset Date of Birth field
     dobInput.value = "";
@@ -436,10 +440,10 @@ const allErrorsMessage = (nameEr , lastEr , radEr , idEr , addressEr , emailEr,p
     radEr?message.push(`ID type: <br>${radEr} <br>`):"";
     idEr?message.push(`ID: <br>${idEr} <br>`):"";
     emailEr?message.push(`Email: <br>${emailEr} <br>`):"";
-    pcEr?message.push(`Email: <br>${pcEr} <br>`):"";
-    phoneEr?message.push(`Ps Code: <br>${phoneEr} <br>`):"";
+    pcEr?message.push(`Postal code: <br>${pcEr} <br>`):"";
+    phoneEr?message.push(`Phone number: <br>${phoneEr} <br>`):"";
+    dobEr?message.push(`Date of birth: <br>${dobEr} <br>`):"";
     addressEr?message.push(`Address: <br>${addressEr} <br>`):"";
-    dobEr?message.push(`Address: <br>${dobEr} <br>`):"";
     formError.innerHTML = `${message.join('<br>')}`;
 }
 
