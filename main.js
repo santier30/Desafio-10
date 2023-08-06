@@ -334,14 +334,14 @@ const dobValidationHandler = (event) => {
   if (content === "") {
     message.push("Date of birth can't be empty.");
   } else {
-    // Parse the date of birth into a Date object
+   
     const dobDate = new Date(content);
     const today = new Date();
 
-    // Calculate the difference in years between the current date and the date of birth
+    
     const ageDifference = today.getFullYear() - dobDate.getFullYear();
 
-    // Check if the person is older than 18
+  
     if (ageDifference < 18) {
       message.push("Must be 18 or older.");
     }
@@ -399,7 +399,7 @@ const resetHandler = () => {
     postalCodeInput.value = "";
     postalCodeError.textContent = "";
 
-    // Reset Date of Birth field
+    // Reset Date of phone field
     phoneNumberInput.value = "";
     phoneNumberError.textContent = "";
   
