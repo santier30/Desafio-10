@@ -8,27 +8,28 @@
 </head>
 <body>
 <main>
-  <form class="form">
+  <form class="form" id="personalInfo">
+    <!-- AQUI!!!!!!!!! -->
     <section>
     <article class="form__field">
-      <div class="Div">
+      <div class="Div" id="first__name-div">
       <label for="first-name" class="form__label">Primer nombre:</label>
       <input type="text" id="first-name" class="form__input" required minlength="3"></div>
-      <p id="first-name-error"></p>
+      <p id="first-name-error" class="animated"></p>
     </article>
 
     <article class="form__field">
-      <div class="Div">
+      <div class="Div" id="last__name-div">
         <label for="last-name" class="form__label">Primer apellido:</label>
         <input type="text" id="last-name" class="form__input" required minlength="2">
       </div>
-      <p id="last-name-error"></p>
+      <p id="last-name-error" class="animated"></p>
    
     </article>
 </section>
 <section>
     <article class="form__field">
-      <div class="Div">
+      <div class="Div" id="radio-div">
       <label for="document-type" class="form__label">Tipo de documento:</label>
       <div class="Div__radio">
       <input type="radio" id="dni" name="identifier" value="DNI">
@@ -37,21 +38,61 @@
       <label for="cuit">CUIT</label>
     </div>
     </div>
-      <p id="document-type-error"></p>
+      <p id="document-type-error" class="animated"></p>
     </article>
 
     <article class="form__field">
-      <div class="Div">
+      <div class="Div" id="document__number-div">
       <label for="document-number" class="form__label">Número de documento:</label>
       <input type="text" id="document-number" class="form__input" required disabled ></div>
-      <p id="document-number-error"></p>
+      <p id="document-number-error" class="animated"></p>
     </article>
 </section>
     <article class="form__field_address">
       <label for="address" class="form__label">Dirección:</label>
-      <input type="text" id="address" class="form__input address" required maxlength="200">
-      <p id="address-error"></p>
+      <input type="text" id="address" class="form__input address animate" required maxlength="200">
+      <p id="address-error" class="animated"></p>
     </article>
+<!---------------------------------------BONUS-------------------------------------------->    
+<section>
+  <article class="form__field">
+    <div class="Div" id="email-div">
+      <label for="email" class="form__label">Correo electrónico:</label>
+      <input type="email" id="email" class="form__input" required>
+    </div>
+    <p id="email-error" class="animated"></p>
+  </article>
+  
+  <article class="form__field">
+    <div class="Div" id="postal-code-div">
+      <label for="postal-code" class="form__label">Código postal:</label>
+      <input type="text" id="postal-code" class="form__input" required >
+    </div>
+    <p id="postal-code-error" class="animated"></p>
+  </article>
+  
+</section>
+<section> 
+  <article class="form__field">
+    <div class="Div" id="phone-number-div">
+      <label for="phone-number" class="form__label">Número de teléfono:</label>
+      <input type="tel" id="phone-number" class="form__input" required >
+    </div>
+    <p id="phone-number-error" class="animated"></p>
+  </article>
+
+  <article class="form__field">
+    <div class="Div" id="dob-div">
+      <label for="dob" class="form__label">Fecha de nacimiento:</label>
+      <input type="date" id="dob" class="form__input" required>
+    </div>
+    <p id="dob-error" class="animated"></p>
+  </article>
+  
+</section>
+<!---------------------------------------BONUS-------------------------------------------->    
+     <p id="form-error" ></p> <!--ME PARECIO QUE QUEDABA MEJOR ABAJO ASI NO MOVIA EL FORMULARIO IGUALMENTE SE PUEDE PONER ARRIVA MOVIENDO ESTE P A DONDE DICE AQUI!!!! -->
+<input id="reset" type="button" value="Reset">
 <input id="sub" type="submit" value="Enviar">
   </form>
 </main>

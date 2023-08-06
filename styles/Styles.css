@@ -32,8 +32,21 @@
 }
 p{color: red;}
 
-#sub{width: 102.5%;}
+#sub,#reset{width: 102.5%;}
+#form-error{
+  text-align: center;
+}
 
+.animated{
+  visibility: hidden;
+  position: relative;
+  right: 10%;
+  transition: all .8s;
+}
+.Div:hover ~ .animated, .address:hover ~ .animated {
+  right: 0 !important;
+  visibility: visible !important;
+}
 
 @media screen and (min-width: 425px) {
   .Div,.Div__radio{
