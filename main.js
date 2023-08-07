@@ -17,7 +17,6 @@ const nameValidationHandler = (event) => {
   for (i of content.split(" ")) {
     let message = [];
     if (i === "") {
-      message.push = "First name cant be empty.";
       continue;
     }
     if (!i[2] || i[10]) {
@@ -168,6 +167,11 @@ const documentBlurHandler = (event) => {
 const addressValidationHandler = (event) => {
   let message = [];
   const content = typeof event === "string" ? event : event.target.value;
+  if (content === "") {
+    addressError.innerHTML = ``;
+    addressEr = "";
+    return;
+  }
   if (!content[19]) {
     message.push("20 digits needed.");
   }
@@ -247,7 +251,9 @@ const phoneNumberValidationHandler = (event) => {
   let message = [];
 
   if (content === "") {
-    message.push("Número de teléfono can't be empty.");
+    phoneNumberError.innerHTML = '';
+    phoneEr = '';
+    return
   } else if (!/^\+54\s?(11|15)\s?\d{8}$/.test(content)) {
     message.push(
       "Invalid phone number. The phone number should be in the format +54 11 or +54 15 followed by 8 digits."
