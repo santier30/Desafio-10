@@ -1,13 +1,29 @@
 
+let [nameEr , lastEr , radEr , idEr , addressEr,emailEr, pcEr,phoneEr,dobEr] =["","","","","","","","",""]
+console.log(dobEr)
+
+const allErrorsMessage = ()=>{
+  let message =[]
+  message.push("All Errors: <br>" )
+  nameEr?message.push(`Name: <br>${nameEr} <br>`):"";
+  lastEr?message.push(`Surname: <br>${lastEr} <br>`):"";
+  radEr?message.push(`ID type: <br>${radEr} <br>`):"";
+  idEr?message.push(`ID: <br>${idEr} <br>`):"";
+  emailEr?message.push(`Email: <br>${emailEr} <br>`):"";
+  pcEr?message.push(`Postal code: <br>${pcEr} <br>`):"";
+  phoneEr?message.push(`Phone number: <br>${phoneEr} <br>`):"";
+  dobEr?message.push(`Date of birth: <br>${dobEr} <br>`):"";
+  addressEr?message.push(`Address: <br>${addressEr} <br>`):"";
+  formError.innerHTML = `${message.join('<br>')}`;
+}
+
 const firstNameInput = document.getElementById("first-name");
 const firstNameError = document.getElementById("first-name-error");
 const firstNameDiv = document.getElementById("first__name-div");
 
 
-const checkForm = () => {
-    allErrorsMessage(...formValidation())
-}
-const nameValidationHandler = (event) => {
+
+const nameValidationHandler = (event) => {console.log("p")
     const content = typeof event === "string"?event:event.target.value;
     let allMessage = [];
     for (i of content.split(" ")) {
@@ -30,7 +46,7 @@ const nameValidationHandler = (event) => {
         
     }
         firstNameError.innerHTML=`${allMessage.join('<br> <br>')}`;
-      return allMessage.join('<br> <br>')
+      nameEr = allMessage.join('<br> <br>')
       }
 
       
@@ -43,8 +59,8 @@ const nameBlurHandler = (event)=>{
     firstNameError.style.visibility = "hidden";
 }
 
-    // firstNameInput.addEventListener("input", nameValidationHandler);
-    firstNameInput.addEventListener("input", checkForm);
+    firstNameInput.addEventListener("input", nameValidationHandler);
+    firstNameInput.addEventListener("input", allErrorsMessage);
     firstNameInput.addEventListener("focus", nameFocusHandler);
     firstNameInput.addEventListener("blur", nameBlurHandler);
 
@@ -73,7 +89,7 @@ const lastValidationHandler = (event) => {
         
     }
         lastNameError.innerHTML=`${allMessage.join('<br> <br>')}`;
-      return allMessage.join('<br> <br>')
+      lastEr = allMessage.join('<br> <br>')
       }
 
 const lastFocusHandler = (event)=>{
@@ -85,8 +101,8 @@ const lastBlurHandler = (event)=>{
     lastNameError.style.visibility = "hidden";
 }
       
-    // lastNameInput.addEventListener("input", lastValidationHandler);
-    lastNameInput.addEventListener("input", checkForm);
+    lastNameInput.addEventListener("input", lastValidationHandler);
+    lastNameInput.addEventListener("input", allErrorsMessage);
     lastNameInput.addEventListener("focus", lastFocusHandler);
     lastNameInput.addEventListener("blur", lastBlurHandler);
 
@@ -127,7 +143,7 @@ documentValidationHandler = (event)=>{
         }
 
         documentError.innerHTML=`${message.join('<br>')}`;
-        return message.join('<br>')
+        idEr = message.join('<br>')
         
 }
     if(flag){
@@ -135,7 +151,8 @@ documentValidationHandler = (event)=>{
 
 }
     flag = true;
-    
+    radEr = dniInput.checked || cuitInput.checked?"":"select one";
+    documentTypeError.innerHTML = radEr ;   
 }
 
 const cuitHandler = ()=>{
@@ -165,13 +182,14 @@ documentValidationHandler = (event)=>{
    
 }
 documentError.innerHTML=`${message.join('<br>')}`;
-return message.join('<br>')
+idEr = message.join('<br>')
 }
 if(flag){
     documentValidationHandler(documentInput.value)
 }
 flag = true;
-
+radEr = dniInput.checked || cuitInput.checked?"":"select one";
+    documentTypeError.innerHTML = radEr ;
 }
 
 const documentFocusHandler = (event)=>{
@@ -185,10 +203,10 @@ const documentBlurHandler = (event)=>{
 
     dniInput.addEventListener("change", dniHandler);
     cuitInput.addEventListener("change", cuitHandler);
-    dniInput.addEventListener("change", checkForm);
-    cuitInput.addEventListener("change", checkForm);
-    // documentInput.addEventListener("input", ()=>{documentValidationHandler(event)});
-    documentInput.addEventListener("input", checkForm);
+    dniInput.addEventListener("change", allErrorsMessage);
+    cuitInput.addEventListener("change", allErrorsMessage);
+    documentInput.addEventListener("input", ()=>{documentValidationHandler(event)});
+    documentInput.addEventListener("input", allErrorsMessage);
     documentInput.addEventListener("focus", documentFocusHandler);
     documentInput.addEventListener("blur", documentBlurHandler);
 
@@ -207,7 +225,7 @@ const addressValidationHandler = (event)=>{
     }
 
 addressError.innerHTML=`${message.join('<br>')}`;
-return message.join('<br>')
+addressEr = message.join('<br>')
 }
 
 const addressFocusHandler = (event)=>{
@@ -219,8 +237,8 @@ const addressBlurHandler = (event)=>{
     addressError.style.visibility = "hidden";
 }
 
-// addressInput.addEventListener("input", addressValidationHandler);
-addressInput.addEventListener("input", checkForm);
+addressInput.addEventListener("input", addressValidationHandler);
+addressInput.addEventListener("input", allErrorsMessage);
 addressInput.addEventListener("focus", addressFocusHandler);
 addressInput.addEventListener("blur", addressBlurHandler);
 
@@ -239,7 +257,7 @@ const emailValidationHandler = (event) => {
   }
 
   emailError.innerHTML = message.join('<br>');
-  return message.join('<br>');
+  emailEr = message.join('<br>');
 };
 
 const emailFocusHandler = (event) => {
@@ -252,7 +270,8 @@ const emailBlurHandler = (event) => {
   emailError.style.visibility = "hidden";
 };
 
-emailInput.addEventListener("input", checkForm);
+emailInput.addEventListener("input", emailValidationHandler);
+emailInput.addEventListener("input", allErrorsMessage);
 emailInput.addEventListener("focus", emailFocusHandler);
 emailInput.addEventListener("blur", emailBlurHandler);
 
@@ -272,7 +291,7 @@ const postalCodeValidationHandler = (event) => {
   }
 
   postalCodeError.innerHTML = message.join('<br>');
-  return message.join('<br>');
+  pcEr = message.join('<br>');
 };
 
 const postalCodeFocusHandler = (event) => {
@@ -285,7 +304,8 @@ const postalCodeBlurHandler = (event) => {
   postalCodeError.style.visibility = "hidden";
 };
 
-postalCodeInput.addEventListener("input", checkForm);
+postalCodeInput.addEventListener("input", postalCodeValidationHandler);
+postalCodeInput.addEventListener("input", allErrorsMessage);
 postalCodeInput.addEventListener("focus", postalCodeFocusHandler);
 postalCodeInput.addEventListener("blur", postalCodeBlurHandler);
 
@@ -305,7 +325,7 @@ const phoneNumberValidationHandler = (event) => {
   }
 
   phoneNumberError.innerHTML = message.join('<br>');
-  return message.join('<br>');
+  phoneEr = message.join('<br>');
 };
 
 const phoneNumberFocusHandler = (event) => {
@@ -318,7 +338,8 @@ const phoneNumberBlurHandler = (event) => {
   phoneNumberError.style.visibility = "hidden";
 };
 
-phoneNumberInput.addEventListener("input", checkForm);
+phoneNumberInput.addEventListener("input", phoneNumberValidationHandler);
+phoneNumberInput.addEventListener("input", allErrorsMessage);
 phoneNumberInput.addEventListener("focus", phoneNumberFocusHandler);
 phoneNumberInput.addEventListener("blur", phoneNumberBlurHandler);
 
@@ -348,7 +369,7 @@ const dobValidationHandler = (event) => {
   }
 
   dobError.innerHTML = message.join('<br>');
-  return message.join('<br>');
+  dobEr = message.join('<br>');
 };
 
 const dobFocusHandler = (event) => {
@@ -361,7 +382,8 @@ const dobBlurHandler = (event) => {
   dobError.style.visibility = "hidden";
 };
 
-dobInput.addEventListener("input", checkForm);
+dobInput.addEventListener("input", dobValidationHandler);
+dobInput.addEventListener("input", allErrorsMessage);
 dobInput.addEventListener("focus", dobFocusHandler);
 dobInput.addEventListener("blur", dobBlurHandler);
 
@@ -370,44 +392,44 @@ dobInput.addEventListener("blur", dobBlurHandler);
 const reset = document.getElementById('reset');
 
 const resetHandler = () => {
-    // Reset First Name field
+    
     firstNameInput.value = "";
     firstNameError.textContent = "";
   
-    // Reset Last Name field
+    
     lastNameInput.value = "";
     lastNameError.textContent = "";
   
-    // Reset Document Type fields
+    
     dniInput.checked = false;
     cuitInput.checked = false;
     documentTypeError.textContent = "";
   
-    // Reset Document Number field
+    
     documentInput.value = "";
     documentError.textContent = "";
   
-    // Reset Address field
+    
     addressInput.value = "";
     addressError.textContent = "";
   
-    // Reset Email field
+  
     emailInput.value = "";
     emailError.textContent = "";
   
-    // Reset Postal Code field
+    
     postalCodeInput.value = "";
     postalCodeError.textContent = "";
 
-    // Reset Date of phone field
+    
     phoneNumberInput.value = "";
     phoneNumberError.textContent = "";
   
-    // Reset Date of Birth field
+    
     dobInput.value = "";
     dobError.textContent = "";
   
-    // Reset form-level error message
+    
     formError.textContent = "";
   };
   
@@ -420,46 +442,30 @@ const form = document.getElementById('personalInfo')
 const formError = document.getElementById('form-error')
 
 const formValidation = ()=>{
-    let nameEr = nameValidationHandler(firstNameInput.value);
-    let lastEr = lastValidationHandler(lastNameInput.value);
-    let radEr = dniInput.checked || cuitInput.checked?"":"select one";
+    nameValidationHandler(firstNameInput.value);
+    lastValidationHandler(lastNameInput.value);
+    radEr = dniInput.checked || cuitInput.checked?"":"select one";
     documentTypeError.innerHTML = radEr ;
-    let idEr = documentValidationHandler(documentInput.value);
-    let emailEr = emailValidationHandler(emailInput.value);
-    let addressEr = addressValidationHandler(addressInput.value);
-    let pcEr = postalCodeValidationHandler(postalCodeInput.value);
-    let phoneEr = phoneNumberValidationHandler(phoneNumberInput.value);
-    let dobEr = dobValidationHandler(dobInput.value);
-    return [nameEr , lastEr , radEr , idEr , addressEr,emailEr,pcEr,phoneEr,dobEr];
-}
-const allErrorsMessage = (nameEr , lastEr , radEr , idEr , addressEr , emailEr,pcEr,phoneEr,dobEr)=>{
-    let message =[]
-    message.push("All Errors: <br>" )
-    nameEr?message.push(`Name: <br>${nameEr} <br>`):"";
-    lastEr?message.push(`Surname: <br>${lastEr} <br>`):"";
-    radEr?message.push(`ID type: <br>${radEr} <br>`):"";
-    idEr?message.push(`ID: <br>${idEr} <br>`):"";
-    emailEr?message.push(`Email: <br>${emailEr} <br>`):"";
-    pcEr?message.push(`Postal code: <br>${pcEr} <br>`):"";
-    phoneEr?message.push(`Phone number: <br>${phoneEr} <br>`):"";
-    dobEr?message.push(`Date of birth: <br>${dobEr} <br>`):"";
-    addressEr?message.push(`Address: <br>${addressEr} <br>`):"";
-    formError.innerHTML = `${message.join('<br>')}`;
+    documentValidationHandler(documentInput.value);
+    emailValidationHandler(emailInput.value);
+    addressValidationHandler(addressInput.value);
+    postalCodeValidationHandler(postalCodeInput.value);
+    phoneNumberValidationHandler(phoneNumberInput.value);
+    dobValidationHandler(dobInput.value);
+    
 }
 
 const submitHandler = (event) => {
     event.preventDefault();
-    const [nameEr , lastEr , radEr , idEr , addressEr,emailEr, pcEr,phoneEr,dobEr] = formValidation()
+     formValidation()
 
         if(!nameEr && !lastEr && !idEr && !radEr && !addressEr && !emailEr && !pcEr && !phoneEr && !dobEr) {
             form.submit()
     }else{
-        allErrorsMessage(nameEr , lastEr , radEr , idEr , addressEr, pcEr)
+        allErrorsMessage()
     }
 
 
 }
 
 form.addEventListener("submit", submitHandler);
-
-
